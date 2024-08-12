@@ -41,6 +41,10 @@ function! OmniSharp#actions#complete#ExpandSnippet() abort
     return
   endif
 
+  if !exists('s:last_startcol')
+    let s:last_startcol = col('.')
+  endif
+
   let completion = strpart(getline('.'), s:last_startcol, col('.') - 1)
 
   let should_expand_completion = len(completion) != 0
